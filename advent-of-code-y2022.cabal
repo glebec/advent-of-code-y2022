@@ -24,7 +24,9 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      AoC.Day01.Input
+      AoC.Day01.Solution
+      AoC.Solver
   other-modules:
       Paths_advent_of_code_y2022
   hs-source-dirs:
@@ -58,13 +60,15 @@ library
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , megaparsec
+    , raw-strings-qq
   default-language: Haskell2010
 
 test-suite advent-of-code-y2022-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      LibSpec
+      AoC.Day01.SolutionSpec
       Paths_advent_of_code_y2022
   hs-source-dirs:
       test
@@ -99,4 +103,6 @@ test-suite advent-of-code-y2022-test
       advent-of-code-y2022
     , base >=4.7 && <5
     , hspec
+    , megaparsec
+    , raw-strings-qq
   default-language: Haskell2010
