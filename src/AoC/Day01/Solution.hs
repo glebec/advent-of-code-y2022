@@ -1,30 +1,34 @@
 module AoC.Day01.Solution where
 
-import AoC.Day01.Input (input)
 import AoC.Solver ((:->:)(..))
 
+import Data.List (sortBy)
 import Data.List.Split (splitOn)
 
 takeInventories :: String -> [[Int]]
 takeInventories = (fmap . fmap) read . splitOn [""] . lines
 
-inventories :: [[Int]]
-inventories = read <$> lines input
-
 -- part 1
-part1 :: [[Int]] -> Int
-part1 = maximum . fmap sum
+biggestInventory :: [[Int]] -> Int
+biggestInventory = maximum . fmap sum
 
 -- part 2
--- TODO
+topThreeInventories :: [[Int]] -> Int
+topThreeInventories = sum . take 3 . sortBy (flip compare) . fmap sum
 
 -- Work in progress towards making this repo more of a framework:
 
 day01a :: [[Int]] :->: Int
 day01a = MkSol
     { sParse = Just . takeInventories
-    , sSolve = Just . part1
+    , sSolve = Just . biggestInventory
     , sPrint = show
     }
 
 -- day01b :: TODO
+day01b :: [[Int]] :->: Int
+day01b = MkSol
+    { sParse = Just . takeInventories
+    , sSolve = Just . topThreeInventories
+    , sPrint = show
+    }
