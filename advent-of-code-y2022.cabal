@@ -60,44 +60,6 @@ library
       base >=4.7 && <5
   default-language: Haskell2010
 
-executable advent-of-code-y2022
-  main-is: Main.hs
-  other-modules:
-      Paths_advent_of_code_y2022
-  hs-source-dirs:
-      app
-  default-extensions:
-      BangPatterns
-      ConstraintKinds
-      DeriveFoldable
-      DeriveFunctor
-      DeriveGeneric
-      DeriveLift
-      DeriveTraversable
-      DerivingStrategies
-      DerivingVia
-      EmptyCase
-      FlexibleContexts
-      FlexibleInstances
-      GeneralizedNewtypeDeriving
-      InstanceSigs
-      KindSignatures
-      LambdaCase
-      MultiParamTypeClasses
-      OverloadedStrings
-      NamedFieldPuns
-      RankNTypes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeApplications
-      TypeOperators
-  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
-  build-depends:
-      advent-of-code-y2022
-    , base >=4.7 && <5
-  default-language: Haskell2010
-
 test-suite advent-of-code-y2022-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs

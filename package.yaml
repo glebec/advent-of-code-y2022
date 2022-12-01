@@ -52,13 +52,6 @@ ghc-options:
 library:
     source-dirs: src
 
-executables:
-    advent-of-code-y2022:
-        main:         Main.hs
-        source-dirs:  app
-        dependencies:
-            - advent-of-code-y2022
-
 tests:
     advent-of-code-y2022-test:
         main:        Spec.hs
