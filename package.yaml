@@ -1,0 +1,70 @@
+name:         advent-of-code-y2022
+version:      0.1.0.0
+github:       glebec/advent-of-code-y2022
+license:      BSD3
+author:       Gabriel Lebec
+maintainer:   glebec@gmail.com
+copyright:    2021 Gabriel Lebec
+description:  Please see the README on GitHub at <https://github.com/glebec/advent-of-code-y2022#readme>
+# synopsis: Short description of your package
+# category: Web
+
+extra-source-files:
+    - README.md
+
+dependencies:
+    - base >= 4.7 && < 5
+
+default-extensions:
+    - BangPatterns
+    - ConstraintKinds
+    - DeriveFoldable
+    - DeriveFunctor
+    - DeriveGeneric
+    - DeriveLift
+    - DeriveTraversable
+    - DerivingStrategies
+    - DerivingVia
+    - EmptyCase
+    - FlexibleContexts
+    - FlexibleInstances
+    - GeneralizedNewtypeDeriving
+    - InstanceSigs
+    - KindSignatures
+    - LambdaCase
+    - MultiParamTypeClasses
+    - OverloadedStrings
+    - NamedFieldPuns
+    - RankNTypes
+    - ScopedTypeVariables
+    - StandaloneDeriving
+    - TupleSections
+    - TypeApplications
+    - TypeOperators
+
+ghc-options:
+    - -Wall
+    - -Wcompat
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wredundant-constraints
+
+library:
+    source-dirs: src
+
+executables:
+    advent-of-code-y2022:
+        main:         Main.hs
+        source-dirs:  app
+        dependencies:
+            - advent-of-code-y2022
+
+tests:
+    advent-of-code-y2022-test:
+        main:        Spec.hs
+        source-dirs: test
+        dependencies:
+            - advent-of-code-y2022
+            - hspec
+            # - hedgehog
+            # - QuickCheck
