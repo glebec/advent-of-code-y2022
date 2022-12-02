@@ -65,23 +65,22 @@ outcomeValue = \case
   Tie -> 3
   Win -> 6
 
-roundScoreA :: (Sign, Sign) -> Int
-roundScoreA game@(_, me) = signValue me + outcomeValue (play game)
+roundScore :: (Sign, Sign) -> Int
+roundScore game@(_, me) = signValue me + outcomeValue (play game)
 
-roundScoreB :: (Sign, Outcome) -> Int
-roundScoreB (elfSign, outcome) =
-    signValue (choose outcome elfSign) + outcomeValue outcome
+toRound :: (Sign, Outcome) -> (Sign, Sign)
+toRound (elfSign, outcome) = (elfSign, choose outcome elfSign)
 
 day02a :: [(Sign, Sign)] :->: Int
 day02a = MkSol
     { sParse = parseMaybe gamesA
-    , sSolve = Just . sum . fmap roundScoreA
+    , sSolve = Just . sum . fmap roundScore
     , sPrint = show
     }
 
 day02b :: [(Sign, Outcome)] :->: Int
 day02b = MkSol
     { sParse = parseMaybe gamesB
-    , sSolve = Just . sum . fmap roundScoreB
+    , sSolve = Just . sum . fmap (roundScore . toRound)
     , sPrint = show
     }
