@@ -52,12 +52,9 @@ choose Loss s = losesTo s
 choose Tie s = s
 
 play :: (Sign, Sign) -> Outcome
-play game@(elf, me) = case game of
-    (Rock,     Paper)    -> Win
-    (Paper,    Scissors) -> Win
-    (Scissors, Rock)     -> Win
-    _ | elf == me        -> Tie
-    _                    -> Loss
+play (elf, me) | me == winnerAgainst elf = Win
+               | me == losesTo elf = Loss
+               | otherwise = Tie
 
 signValue :: Sign -> Int
 signValue = (+1) . fromEnum
