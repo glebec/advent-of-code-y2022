@@ -14,12 +14,9 @@ type Parser = Parsec Void String
 
 pSign :: Parser Sign
 pSign =
-    char 'A' $> Rock <|>
-    char 'B' $> Paper <|>
-    char 'C' $> Scissors <|>
-    char 'X' $> Rock <|>
-    char 'Y' $> Paper <|>
-    char 'Z' $> Scissors
+    (char 'A' <|> char 'X') $> Rock <|>
+    (char 'B' <|> char 'Y') $> Paper <|>
+    (char 'C' <|> char 'Z') $> Scissors
 
 pOutcome :: Parser Outcome
 pOutcome =
@@ -29,18 +26,14 @@ pOutcome =
 
 gamesA :: Parser [(Sign, Sign)]
 gamesA = many $ do
-    elfSign <- pSign
-    space
-    mySign <- pSign
-    space
+    elfSign <- pSign <* space
+    mySign <- pSign <* space
     pure (elfSign, mySign)
 
 gamesB :: Parser [(Sign, Outcome)]
 gamesB = many $ do
-    elfSign <- pSign
-    space
-    outcome <- pOutcome
-    space
+    elfSign <- pSign <* space
+    outcome <- pOutcome <* space
     pure (elfSign, outcome)
 
 winnerAgainst :: Sign -> Sign
