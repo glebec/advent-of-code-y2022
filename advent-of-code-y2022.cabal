@@ -26,6 +26,8 @@ library
   exposed-modules:
       AoC.Day01.Input
       AoC.Day01.Solution
+      AoC.Day02.Input
+      AoC.Day02.Solution
       AoC.Solver
   other-modules:
       Paths_advent_of_code_y2022
