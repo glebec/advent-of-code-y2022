@@ -28,6 +28,8 @@ library
       AoC.Day01.Solution
       AoC.Day02.Input
       AoC.Day02.Solution
+      AoC.Day03.Input
+      AoC.Day03.Solution
       AoC.Solver
   other-modules:
       Paths_advent_of_code_y2022
@@ -47,6 +49,7 @@ library
       FlexibleContexts
       FlexibleInstances
       GeneralizedNewtypeDeriving
+      ImportQualifiedPost
       InstanceSigs
       KindSignatures
       LambdaCase
@@ -62,6 +65,7 @@ library
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , containers
     , megaparsec
     , raw-strings-qq
     , split
@@ -89,6 +93,7 @@ test-suite advent-of-code-y2022-test
       FlexibleContexts
       FlexibleInstances
       GeneralizedNewtypeDeriving
+      ImportQualifiedPost
       InstanceSigs
       KindSignatures
       LambdaCase
@@ -105,6 +110,7 @@ test-suite advent-of-code-y2022-test
   build-depends:
       advent-of-code-y2022
     , base >=4.7 && <5
+    , containers
     , hspec
     , megaparsec
     , raw-strings-qq
