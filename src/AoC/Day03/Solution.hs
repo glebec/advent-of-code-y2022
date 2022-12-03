@@ -15,9 +15,10 @@ halve :: String -> [String]
 halve s = let (l, r) = splitAt (length s `div` 2) s in [l, r]
 
 priority :: Char -> Int
-priority c | fromEnum c >= 97 = fromEnum c - 96  -- [a..z]
-           | fromEnum c >= 65 = fromEnum c - 38  -- [A..Z]
+priority c | n >= 97 = n - 96  -- [a..z]
+           | n >= 65 = n - 38  -- [A..Z]
            | otherwise = 0
+           where n = fromEnum c
 
 commonValue :: [String] -> Int
 commonValue = sum . fmap priority . common
