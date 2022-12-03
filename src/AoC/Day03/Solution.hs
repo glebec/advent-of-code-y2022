@@ -12,8 +12,8 @@ common (l, r) = S.toList $ S.intersection (S.fromList l) (S.fromList r)
 
 priority :: Char -> Int
 priority c | fromEnum c >= 97 = fromEnum c - 96  -- [a..z]
-        | fromEnum c >= 65 = fromEnum c - 38  -- [A..Z]
-        | otherwise = 0
+           | fromEnum c >= 65 = fromEnum c - 38  -- [A..Z]
+           | otherwise = 0
 
 sackValue :: String -> Int
 sackValue = sum . fmap priority . common . halve
