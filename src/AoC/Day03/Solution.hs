@@ -15,7 +15,7 @@ common :: [Sack] -> [Item]
 common sacks = S.toList $ foldr S.intersection items (fmap S.fromList sacks)
 
 halve :: Sack -> [Sack]
-halve sack = let (l, r) = splitAt (length sack `div` 2) sack in [l, r]
+halve sack = [l, r] where (l, r) = splitAt (length sack `div` 2) sack
 
 priority :: Item -> Int
 priority item
