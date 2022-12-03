@@ -15,13 +15,14 @@ common :: [Sack] -> [Item]
 common sacks = S.toList $ foldr S.intersection items (fmap S.fromList sacks)
 
 halve :: Sack -> [Sack]
-halve s = let (l, r) = splitAt (length s `div` 2) s in [l, r]
+halve sack = let (l, r) = splitAt (length sack `div` 2) sack in [l, r]
 
 priority :: Item -> Int
-priority c | n >= 97 = n - 96  -- [a..z]
-           | n >= 65 = n - 38  -- [A..Z]
-           | otherwise = 0
-           where n = fromEnum c
+priority item
+    | n >= 97   = n - 96  -- [a..z]
+    | n >= 65   = n - 38  -- [A..Z]
+    | otherwise = 0
+    where n = fromEnum item
 
 commonValue :: [Sack] -> Int
 commonValue = sum . fmap priority . common
