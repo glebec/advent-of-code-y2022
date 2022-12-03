@@ -27,16 +27,14 @@ priority item
 commonValue :: [Sack] -> Int
 commonValue = sum . fmap priority . common
 
-day03a :: [Sack] :->: Int
-day03a = MkSol
-    { sParse = Just . lines
-    , sSolve = Just . sum . fmap (commonValue . halve)
-    , sPrint = show
-    }
-
-day03b :: [[Sack]] :->: Int
-day03b = MkSol
-    { sParse = Just . chunksOf 3 . lines
+day03 :: ([Sack] -> [[Sack]])  -- how to group sacks
+      -> ([[Sack]] :->: Int)  -- solution
+day03 groupSacks = MkSol
+    { sParse = Just . groupSacks . lines
     , sSolve = Just . sum . fmap commonValue
     , sPrint = show
     }
+
+day03a, day03b :: [[Sack]] :->: Int
+day03a = day03 $ fmap halve
+day03b = day03 $ chunksOf 3
