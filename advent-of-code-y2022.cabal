@@ -30,6 +30,8 @@ library
       AoC.Day02.Solution
       AoC.Day03.Input
       AoC.Day03.Solution
+      AoC.Day04.Input
+      AoC.Day04.Solution
       AoC.Solver
   other-modules:
       Paths_advent_of_code_y2022
@@ -66,6 +68,7 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , intervals
     , megaparsec
     , raw-strings-qq
     , split
@@ -112,6 +115,7 @@ test-suite advent-of-code-y2022-test
     , base >=4.7 && <5
     , containers
     , hspec
+    , intervals
     , megaparsec
     , raw-strings-qq
     , split
