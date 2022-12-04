@@ -68,7 +68,7 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
-    , intervals
+    , data-interval
     , megaparsec
     , raw-strings-qq
     , split
@@ -114,8 +114,8 @@ test-suite advent-of-code-y2022-test
       advent-of-code-y2022
     , base >=4.7 && <5
     , containers
+    , data-interval
     , hspec
-    , intervals
     , megaparsec
     , raw-strings-qq
     , split
