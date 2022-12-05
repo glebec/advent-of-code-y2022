@@ -7,7 +7,16 @@ import Data.IntMap.Strict qualified as IM
 import Data.List (foldl', transpose)
 import Data.Maybe (catMaybes)
 import Data.Void (Void)
-import Text.Megaparsec (Parsec, (<|>), anySingle, manyTill, parseMaybe, some, sepBy1, skipCount)
+import Text.Megaparsec (
+    Parsec,
+    anySingle,
+    manyTill,
+    parseMaybe,
+    sepBy1,
+    skipCount,
+    some,
+    (<|>),
+ )
 import Text.Megaparsec.Char (char, letterChar, newline, space, string)
 import Text.Megaparsec.Char.Lexer (decimal)
 
