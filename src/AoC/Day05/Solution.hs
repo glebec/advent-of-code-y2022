@@ -2,7 +2,6 @@ module AoC.Day05.Solution where
 
 import AoC.Solver ((:->:)(..))
 
-import Data.IntMap.Strict (IntMap)
 import Data.IntMap.Strict qualified as IM
 import Data.List (foldl', transpose)
 import Data.Maybe (catMaybes)
@@ -23,14 +22,13 @@ import Text.Megaparsec.Char.Lexer (decimal)
 type Parser = Parsec Void String
 type Crate = Char
 type Stack = [Crate]
-type Stacks = IntMap Stack
+type Stacks = IM.IntMap Stack
 
 data Move = Move
     { howMany :: Int
     , source :: Int
     , dest :: Int
     }
-    deriving (Show)
 
 -- Parsing
 
@@ -74,10 +72,8 @@ applyMove modifier initial (Move {howMany, source, dest}) = final where
     intermediate = IM.adjust (const remainder) source initial
     (taken, remainder) = splitAt howMany (initial IM.! source)
 
-processA :: (Stacks, [Move]) -> Stacks
+processA, processB :: (Stacks, [Move]) -> Stacks
 processA (stacks, moves) = foldl' (applyMove reverse) stacks moves
-
-processB :: (Stacks, [Move]) -> Stacks
 processB (stacks, moves) = foldl' (applyMove id) stacks moves
 
 tops :: Stacks -> [Crate]
@@ -85,14 +81,8 @@ tops stacks = head . snd <$> IM.toAscList stacks
 
 -- Solutions
 
-day05a :: (Stacks, [Move]) :->: String
-day05a = MkSol
-    { sParse = parseMaybe stacksAndMoves
-    , sSolve = Just . tops . processA
-    , sPrint = id
-    }
-
-day05b :: (Stacks, [Move]) :->: String
+day05a, day05b :: (Stacks, [Move]) :->: String
+day05a = day05b { sSolve = Just . tops . processA }
 day05b = MkSol
     { sParse = parseMaybe stacksAndMoves
     , sSolve = Just . tops . processB
