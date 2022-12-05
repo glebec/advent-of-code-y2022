@@ -24,6 +24,8 @@ source-repository head
 
 library
   exposed-modules:
+      AoC.Day00.Input
+      AoC.Day00.Solution
       AoC.Day01.Input
       AoC.Day01.Solution
       AoC.Day02.Input
