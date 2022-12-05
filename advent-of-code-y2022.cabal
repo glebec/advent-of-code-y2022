@@ -34,6 +34,8 @@ library
       AoC.Day03.Solution
       AoC.Day04.Input
       AoC.Day04.Solution
+      AoC.Day05.Input
+      AoC.Day05.Solution
       AoC.Solver
   other-modules:
       Paths_advent_of_code_y2022
