@@ -66,14 +66,19 @@ stacksAndMoves = do
 
 -- Processing
 
-applyMove :: Stacks -> Move -> Stacks
-applyMove initial (Move {howMany, source, dest}) = final where
-    final = IM.adjust (reverse taken ++) dest intermediate
+applyMove
+    :: ([Crate] -> [Crate])  -- optional crane modifier
+    -> Stacks -> Move -> Stacks
+applyMove modifier initial (Move {howMany, source, dest}) = final where
+    final = IM.adjust (modifier taken ++) dest intermediate
     intermediate = IM.adjust (const remainder) source initial
     (taken, remainder) = splitAt howMany (initial IM.! source)
 
-process :: (Stacks, [Move]) -> Stacks
-process (stacks, moves) = foldl' applyMove stacks moves
+processA :: (Stacks, [Move]) -> Stacks
+processA (stacks, moves) = foldl' (applyMove reverse) stacks moves
+
+processB :: (Stacks, [Move]) -> Stacks
+processB (stacks, moves) = foldl' (applyMove id) stacks moves
 
 tops :: Stacks -> [Crate]
 tops stacks = head . snd <$> IM.toAscList stacks
@@ -83,6 +88,13 @@ tops stacks = head . snd <$> IM.toAscList stacks
 day05a :: (Stacks, [Move]) :->: String
 day05a = MkSol
     { sParse = parseMaybe stacksAndMoves
-    , sSolve = Just . tops . process
+    , sSolve = Just . tops . processA
+    , sPrint = id
+    }
+
+day05b :: (Stacks, [Move]) :->: String
+day05b = MkSol
+    { sParse = parseMaybe stacksAndMoves
+    , sSolve = Just . tops . processB
     , sPrint = id
     }
