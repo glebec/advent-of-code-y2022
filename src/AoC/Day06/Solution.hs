@@ -1,16 +1,14 @@
 module AoC.Day06.Solution where
 
 import AoC.Solver ((:->:)(..))
-import Data.List (findIndex, nub, zipWith4)
+import Data.Set qualified as S
 
-processA :: String -> Maybe Int
-processA str = (+4) <$> findIndex ((== 4) . length . nub) quads where
-    quads = zipWith4 (\a b c d -> [a, b, c, d])
-            str (drop 1 str) (drop 2 str) (drop 3 str)
+findSet :: Int -> String -> Maybe Int
+findSet n str = go n str where
+    go _ [] = Nothing
+    go i rest | n == S.size (S.fromList $ take n rest) = Just i
+              | otherwise = go (i + 1) (tail rest)
 
-day06a :: String :->: Int
-day06a = MkSol
-    { sParse = Just
-    , sSolve = processA
-    , sPrint = show
-    }
+day06a, day06b :: String :->: Int
+day06a = MkSol {sParse = Just, sSolve = findSet 4, sPrint = show}
+day06b = MkSol {sParse = Just, sSolve = findSet 14, sPrint = show}
