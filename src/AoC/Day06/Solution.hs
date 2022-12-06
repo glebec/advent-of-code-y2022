@@ -1,14 +1,14 @@
 module AoC.Day06.Solution where
 
 import AoC.Solver ((:->:)(..))
-import Data.Set qualified as S
+import Data.Containers.ListUtils (nubIntOn)
 
-findSet :: Int -> String -> Maybe Int
-findSet n str = go n str where
+findUniq :: Int -> String -> Maybe Int
+findUniq n str = go n str where
     go _ [] = Nothing
-    go i rest | n == S.size (S.fromList $ take n rest) = Just i
+    go i rest | n == length (nubIntOn fromEnum $ take n rest) = Just i
               | otherwise = go (i + 1) (tail rest)
 
 day06a, day06b :: String :->: Int
-day06a = MkSol {sParse = Just, sSolve = findSet 4, sPrint = show}
-day06b = MkSol {sParse = Just, sSolve = findSet 14, sPrint = show}
+day06a = MkSol {sParse = Just, sSolve = findUniq 4, sPrint = show}
+day06b = day06a {sSolve = findUniq 14}
